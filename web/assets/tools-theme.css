@@ -1,0 +1,101 @@
+/* Shared look for the standalone tools: the same tokens, glass and aurora as the main site (src/styles/tokens.css). */
+:root {
+  --glass-border: rgba(255, 255, 255, 0.35);
+  --color-bg: hsl(220, 20%, 97%);
+  --color-surface: rgba(255, 255, 255, 0.4);
+  --color-text: hsl(220, 20%, 10%);
+  --color-text-muted: hsl(220, 15%, 35%);
+  --color-accent: hsl(280, 70%, 60%);
+  --color-accent-light: hsl(280, 70%, 75%);
+  --color-accent-text: hsl(280, 70%, 45%);
+  --color-accent-glass: hsla(280, 70%, 60%, 0.1);
+  --color-error: hsl(0, 72%, 45%);
+  --tt-card: rgba(255, 255, 255, 0.58);
+  --tt-field: rgba(255, 255, 255, 0.75);
+  --tt-shadow: 0 8px 32px rgba(31, 38, 135, 0.12);
+  --tt-bar: rgba(255, 255, 255, 0.62);
+  --aurora-a: hsla(280, 100%, 70%, 0.32);
+  --aurora-b: hsla(200, 100%, 60%, 0.28);
+  --aurora-c: hsla(340, 100%, 65%, 0.26);
+  --badge-ok-bg: hsla(142, 60%, 45%, 0.16);   --badge-ok-fg: hsl(142, 65%, 28%);
+  --badge-warn-bg: hsla(45, 90%, 50%, 0.2);   --badge-warn-fg: hsl(38, 90%, 28%);
+  --badge-high-bg: hsla(14, 80%, 55%, 0.18);  --badge-high-fg: hsl(12, 75%, 38%);
+  --badge-ex-bg: hsla(350, 80%, 55%, 0.18);   --badge-ex-fg: hsl(350, 70%, 38%);
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+}
+[data-theme="dark"] {
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --color-bg: hsl(220, 20%, 8%);
+  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-text: hsl(220, 20%, 95%);
+  --color-text-muted: hsl(220, 15%, 68%);
+  --color-accent: hsl(280, 80%, 65%);
+  --color-accent-light: hsl(280, 80%, 75%);
+  --color-accent-text: hsl(280, 80%, 78%);
+  --color-accent-glass: hsla(280, 80%, 65%, 0.16);
+  --color-error: hsl(0, 85%, 70%);
+  --tt-card: rgba(255, 255, 255, 0.06);
+  --tt-field: rgba(0, 0, 0, 0.28);
+  --tt-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --tt-bar: rgba(12, 14, 24, 0.6);
+  --aurora-a: hsla(280, 100%, 65%, 0.22);
+  --aurora-b: hsla(210, 100%, 55%, 0.18);
+  --aurora-c: hsla(340, 100%, 60%, 0.14);
+  --badge-ok-bg: hsla(142, 60%, 45%, 0.2);   --badge-ok-fg: hsl(142, 65%, 62%);
+  --badge-warn-bg: hsla(45, 90%, 50%, 0.2);   --badge-warn-fg: hsl(45, 90%, 62%);
+  --badge-high-bg: hsla(14, 80%, 55%, 0.22);  --badge-high-fg: hsl(14, 90%, 66%);
+  --badge-ex-bg: hsla(350, 80%, 55%, 0.22);   --badge-ex-fg: hsl(350, 100%, 72%);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: light dark; }
+[data-theme="light"] { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
+body { margin: 0; min-height: 100vh; font: 16px/1.65 var(--font-sans); color: var(--color-text); background: var(--color-bg); -webkit-font-smoothing: antialiased; }
+.tt-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(55% 45% at 12% 8%, var(--aurora-a), transparent 70%),
+    radial-gradient(50% 45% at 88% 18%, var(--aurora-b), transparent 70%),
+    radial-gradient(55% 50% at 72% 92%, var(--aurora-c), transparent 70%),
+    var(--color-bg); }
+a { color: var(--color-accent-text); }
+
+.tt-header { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 max(16px, calc((100% - 72rem) / 2)); height: 3.6rem; background: var(--tt-bar); border-bottom: 1px solid var(--glass-border); -webkit-backdrop-filter: blur(14px) saturate(160%); backdrop-filter: blur(14px) saturate(160%); }
+.tt-brand { font-size: 1.1rem; font-weight: 700; text-decoration: none; background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.tt-right { display: flex; align-items: center; gap: 8px; }
+.tt-lang, .tt-theme { display: inline-grid; place-items: center; min-width: 2.2rem; height: 2.2rem; padding: 0 10px; border: 1px solid var(--glass-border); border-radius: 999px; background: transparent; color: var(--color-text-muted); font: 600 13px/1 var(--font-sans); text-decoration: none; cursor: pointer; }
+.tt-lang:hover, .tt-theme:hover { color: var(--color-accent-text); border-color: var(--color-accent); }
+
+.tt-main { width: min(48rem, 100% - 2rem); margin: 0 auto; padding: clamp(2rem, 6vw, 4rem) 0 4rem; }
+.tt-eyebrow { margin: 0 0 6px; color: var(--color-accent-text); font: 700 12px/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; }
+.tt-main h1 { margin: 0 0 12px; font-size: clamp(1.9rem, 5.2vw, 2.9rem); line-height: 1.12; letter-spacing: -0.035em; }
+.tt-lead { margin: 0 0 1.6rem; color: var(--color-text-muted); max-width: 40rem; }
+
+.tt-card, .card { background: var(--tt-card); border: 1px solid var(--glass-border); border-radius: 1.25rem; box-shadow: var(--tt-shadow); -webkit-backdrop-filter: blur(14px) saturate(160%); backdrop-filter: blur(14px) saturate(160%); }
+.tt-card { padding: 1.2rem; margin: 0 0 1rem; }
+#drop { border: 2px dashed color-mix(in srgb, var(--color-accent) 45%, var(--glass-border)); border-radius: 1.25rem; padding: 2.2rem 1rem; margin: 0 0 1rem; text-align: center; background: var(--tt-card); transition: background 200ms, border-color 200ms; }
+#drop.over, #drop:hover { background: var(--color-accent-glass); border-color: var(--color-accent); }
+#drop p { margin: 0.8rem 0 0; color: var(--color-text-muted); }
+label.pick, button, .tt-btn { display: inline-block; padding: 0.55rem 1.15rem; border: 0; border-radius: 999px; color: #fff; background: var(--color-accent); font: 600 14px/1.3 var(--font-sans); cursor: pointer; transition: filter 150ms, transform 150ms; }
+label.pick:hover, button:hover { filter: brightness(1.08); }
+button:active { transform: scale(0.98); }
+button:disabled { opacity: 0.45; cursor: default; filter: none; }
+button.ghost { background: transparent; color: var(--color-accent-text); border: 1px solid color-mix(in srgb, var(--color-accent) 60%, transparent); }
+input[type=file] { display: none; }
+textarea, input[type=number], input[type=text] { width: 100%; padding: 0.8rem 0.95rem; border: 1px solid var(--glass-border); border-radius: 0.9rem; color: var(--color-text); background: var(--tt-field); font: 14px/1.55 var(--font-mono); }
+textarea { resize: vertical; }
+input[type=number] { width: 5rem; padding: 0.3rem 0.5rem; font-family: var(--font-sans); }
+textarea:focus, input:focus { outline: 2px solid var(--color-accent); outline-offset: 1px; }
+#status, .status { min-height: 1.6rem; margin: 0.4rem 0; color: var(--color-text-muted); }
+.status.err, .warn { color: var(--color-error); }
+.note { margin: 4px 0; color: var(--color-text-muted); font-size: 13px; }
+.opts { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: center; margin: 0 0 1rem; color: var(--color-text-muted); font-size: 14px; }
+.opts label { display: inline-flex; gap: 6px; align-items: center; }
+.card { padding: 1rem 1.1rem; margin: 0 0 0.9rem; }
+.card .head { word-break: break-all; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.7rem 0; }
+.prev { height: 12rem; }
+.tt-foot { margin-top: 2rem; color: var(--color-text-muted); font-size: 13px; }
+.foot { margin-top: 2rem; color: var(--color-text-muted); font-size: 13px; }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

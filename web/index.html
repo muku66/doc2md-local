@@ -1,0 +1,11 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src data: blob:; connect-src 'self'; worker-src 'self' blob:; font-src 'self'; base-uri 'none'; form-action 'none'"><meta name="theme-color" content="#f5f6f9"><title>PDF / Word / PPT / Excel 转 Markdown（本地处理） | 切肯充电站</title><link rel="stylesheet" href="./assets/tools-theme.css"><script src="./assets/tools-theme.js"></script>
+<div class="tt-bg" aria-hidden="true"></div>
+<header class="tt-header"><a class="tt-brand" href="./index.html">切肯充电站</a><div class="tt-right"><a class="tt-lang" href="./index.en.html" hreflang="en">EN</a><button class="tt-theme" id="tt-theme" type="button"></button></div></header>
+<main class="tt-main"><p class="tt-eyebrow">Tools · 本机处理 · 不上传</p><h1>PDF / Word / PPT / Excel 转 Markdown</h1><p class="tt-lead">文件只在你的浏览器里处理，不会上传。所有依赖均随仓库提供；本地启动后可离线转换。支持 .pdf、.docx、.pptx、.xlsx（Excel 同时导出完整 CSV）。</p>
+<div id="drop"><label class="pick" for="file">选择文件（可多选）</label><input id="file" type="file" multiple accept=".pdf,.docx,.pptx,.xlsx,.doc,.ppt,.xls"><p>也可以把文件拖到这里</p></div>
+<div class="opts"><label>Excel 预览行数 <input id="rows" type="number" min="0" value="50"> （0 = 全部）</label><label><input id="bom" type="checkbox" checked> CSV 加 BOM（用 Excel 打开中文不乱码）</label></div>
+<button id="zip" hidden>全部打包下载 (.zip)</button>
+<div id="results"></div>
+<p class="tt-foot">局限：不能识别扫描版 PDF（没有文字识别），不支持旧格式 .doc / .ppt / .xls；PDF 的表格和复杂排版只能做基本还原，转换后请检查。图片不会导出。<br>使用的开源库：<a href="https://github.com/mozilla/pdf.js" rel="noopener noreferrer">PDF.js</a>（Apache-2.0）、<a href="https://github.com/Stuk/jszip" rel="noopener noreferrer">JSZip</a>（MIT）。许可证文本见 <a href="./vendor/LICENSES.txt">LICENSES.txt</a>。<br><a href="./README.md">项目说明</a></p>
+</main>
+<script src="./vendor/jszip.min.js"></script><script type="module" src="./app.js"></script></html>

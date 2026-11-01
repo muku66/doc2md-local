@@ -1,0 +1,7 @@
+# Versions used for the conversion smoke tests (macOS / Python 3.13).
+# Classic PDF parser; newer pymupdf4llm releases change dependencies/API.
+pymupdf4llm==0.0.27
+pymupdf==1.26.7
+python-pptx==1.0.2
+python-docx==1.2.0
+openpyxl==3.1.5
