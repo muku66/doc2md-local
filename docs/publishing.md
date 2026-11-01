@@ -6,7 +6,7 @@
 - desktop/：两份 Python 脚本、build_exe.bat、requirements*.txt、README、AGPL LICENSE、第三方声明、docs/windows-build.md。
 - web/：index.html、index.en.html、app.js、core/ 五个文件、assets/ 共享样式与主题逻辑、vendor/ 库/字符映射/许可证/版本/哈希、MIT LICENSE、README、第三方声明。
 - docs/：本文、Release 双语草稿、验证记录。
-- .gitignore、.gitattributes、LICENSE-DOCS。
+- .gitignore、.gitattributes、docs/LICENSE。
 
 没有复制备份目录的凭证、构建产物或其他私人文件。
 
@@ -59,7 +59,7 @@ git config --local --get user.email
 确认结尾为 @users.noreply.github.com，且没有仍使用占位符，才继续。
 
 ```sh
-git add -- README.md LICENSE-DOCS .gitignore .gitattributes desktop web docs
+git add -- README.md docs/LICENSE .gitignore .gitattributes desktop web docs
 ```
 
 ```sh

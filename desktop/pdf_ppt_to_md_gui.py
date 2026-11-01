@@ -18,6 +18,7 @@ PDF/PPTX/DOCX/XLSX 转 Markdown 小工具（图形界面版）
 """
 
 import sys
+import queue
 import threading
 import traceback
 from pathlib import Path
@@ -191,6 +192,8 @@ OLD_FORMAT_HINT = {
 class App:
     def __init__(self, root):
         self.root = root
+        self.ui_events = queue.Queue()
+        self.converting = False
         root.title("PDF/PPTX/DOCX/XLSX 转 Markdown 小工具")
         root.geometry("560x450")
         root.resizable(False, False)
@@ -204,7 +207,8 @@ class App:
         btn_frame = tk.Frame(root)
         btn_frame.pack(pady=5)
 
-        tk.Button(btn_frame, text="选择文件", width=16, command=self.choose_files).pack(side="left", padx=5)
+        self.choose_btn = tk.Button(btn_frame, text="选择文件", width=16, command=self.choose_files)
+        self.choose_btn.pack(side="left", padx=5)
         self.convert_btn = tk.Button(btn_frame, text="开始转换", width=16, command=self.start_convert, state="disabled")
         self.convert_btn.pack(side="left", padx=5)
 
@@ -216,6 +220,7 @@ class App:
         self.log_box.pack(padx=15, pady=(0, 15))
 
         self.selected_files = []
+        self.root.after(100, self.drain_ui_events)
 
     def choose_files(self):
         files = filedialog.askopenfilenames(
@@ -230,17 +235,46 @@ class App:
             self.convert_btn.config(state="normal")
 
     def log(self, text):
-        self.log_box.config(state="normal")
-        self.log_box.insert("end", text + "\n")
-        self.log_box.see("end")
-        self.log_box.config(state="disabled")
+        # Worker threads only enqueue data; Tk widgets belong to the main thread.
+        self.ui_events.put(("log", text))
+
+    def drain_ui_events(self):
+        try:
+            while True:
+                event, payload = self.ui_events.get_nowait()
+                if event == "log":
+                    self.log_box.config(state="normal")
+                    self.log_box.insert("end", payload + "\n")
+                    self.log_box.see("end")
+                    self.log_box.config(state="disabled")
+                elif event == "finished":
+                    self.converting = False
+                    self.choose_btn.config(state="normal")
+                    self.convert_btn.config(state="normal" if self.selected_files else "disabled")
+                    messagebox.showinfo("完成", "转换已完成，请查看日志确认每个文件的结果。")
+        except queue.Empty:
+            pass
+        self.root.after(100, self.drain_ui_events)
 
     def start_convert(self):
+        if self.converting or not self.selected_files:
+            return
+        self.converting = True
+        self.choose_btn.config(state="disabled")
         self.convert_btn.config(state="disabled")
-        threading.Thread(target=self.convert_all, daemon=True).start()
+        files = tuple(self.selected_files)
+        threading.Thread(target=self.run_conversion, args=(files,), daemon=True).start()
 
-    def convert_all(self):
-        for f in self.selected_files:
+    def run_conversion(self, files):
+        try:
+            self.convert_all(files)
+        except Exception:
+            self.log(traceback.format_exc())
+        finally:
+            self.ui_events.put(("finished", None))
+
+    def convert_all(self, files):
+        for f in files:
             suffix = f.suffix.lower()
             if suffix in OLD_FORMAT_HINT:
                 self.log(f"✘ {f.name}：{OLD_FORMAT_HINT[suffix]}")
@@ -271,8 +305,6 @@ class App:
                 self.log(f"✘ {f.name} 转换失败：{e}")
                 self.log(traceback.format_exc())
         self.log("\n全部处理完成。")
-        self.convert_btn.config(state="normal")
-        messagebox.showinfo("完成", "转换已完成，请查看日志确认每个文件的结果。")
 
 
 def main():

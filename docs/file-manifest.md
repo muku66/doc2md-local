@@ -2,8 +2,7 @@
 
 - [.gitattributes](../.gitattributes) — 116 bytes
 - [.gitignore](../.gitignore) — 198 bytes
-- [LICENSE-DOCS](../LICENSE-DOCS) — 1063 bytes
-- [README.md](../README.md) — 2292 bytes
+- [README.md](../README.md) — 2300 bytes
 - [desktop/DEPENDENCY_LICENSES.txt](../desktop/DEPENDENCY_LICENSES.txt) — 3709 bytes
 - [desktop/LICENSE](../desktop/LICENSE) — 34523 bytes
 - [desktop/README.md](../desktop/README.md) — 4327 bytes
@@ -11,15 +10,16 @@
 - [desktop/build_exe.bat](../desktop/build_exe.bat) — 868 bytes
 - [desktop/docs/windows-build.md](../desktop/docs/windows-build.md) — 2148 bytes
 - [desktop/pdf_ppt_to_md_cli.py](../desktop/pdf_ppt_to_md_cli.py) — 11950 bytes
-- [desktop/pdf_ppt_to_md_gui.py](../desktop/pdf_ppt_to_md_gui.py) — 11275 bytes
+- [desktop/pdf_ppt_to_md_gui.py](../desktop/pdf_ppt_to_md_gui.py) — 12530 bytes
 - [desktop/requirements-build.txt](../desktop/requirements-build.txt) — 32 bytes
 - [desktop/requirements.txt](../desktop/requirements.txt) — 234 bytes
+- [docs/LICENSE](../docs/LICENSE) — 1063 bytes
 - [docs/publishing.md](../docs/publishing.md) — 4945 bytes
 - [docs/release-v1.0.0.md](../docs/release-v1.0.0.md) — 2204 bytes
-- [docs/verification.md](../docs/verification.md) — 2396 bytes
+- [docs/verification.md](../docs/verification.md) — 3152 bytes
 - [web/LICENSE](../web/LICENSE) — 1063 bytes
 - [web/README.md](../web/README.md) — 2657 bytes
-- [web/THIRD_PARTY_NOTICES.md](../web/THIRD_PARTY_NOTICES.md) — 2065 bytes
+- [web/THIRD_PARTY_NOTICES.md](../web/THIRD_PARTY_NOTICES.md) — 2049 bytes
 - [web/app.js](../web/app.js) — 8036 bytes
 - [web/assets/tools-theme.css](../web/assets/tools-theme.css) — 7299 bytes
 - [web/assets/tools-theme.js](../web/assets/tools-theme.js) — 1497 bytes
@@ -27,7 +27,7 @@
 - [web/core/pdf.js](../web/core/pdf.js) — 7775 bytes
 - [web/core/pptx.js](../web/core/pptx.js) — 5783 bytes
 - [web/core/util.js](../web/core/util.js) — 3182 bytes
-- [web/core/xlsx.js](../web/core/xlsx.js) — 5908 bytes
+- [web/core/xlsx.js](../web/core/xlsx.js) — 6300 bytes
 - [web/index.en.html](../web/index.en.html) — 2458 bytes
 - [web/index.html](../web/index.html) — 2411 bytes
 - [web/vendor/LICENSE-core-js.txt](../web/vendor/LICENSE-core-js.txt) — 1134 bytes

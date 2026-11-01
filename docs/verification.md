@@ -26,3 +26,12 @@
 ## GitHub 状态
 
 用户随后授权代为上传；已创建 muku66/doc2md-local 私有仓库。本次通过系统已有 Git HTTPS 凭据推送，提交身份使用 GitHub 邮箱设置页确认的 noreply 邮箱。仓库保持 Private；没有改为公开或创建 Release。发布指南仍保留手动流程供后续维护使用。
+
+## 公开前独立复查（2026-11-01）
+
+- 助理复查未发现凭证、私人路径或桌面/网页许可证混用；Git 历史提交邮箱仅 noreply。
+- 修复 GUI 跨线程更新 Tk：后台仅入队，主线程 after 处理日志和完成事件；无 GUI 调度验证通过。
+- 修复网页版 Excel 1904 日期系统的偏移方向，并处理 1900 年早期日期和 OOXML boolean true。用真实 XLSX 样例覆盖 1900-01-01、1904-01-01 和 2026-11-01。
+- 从 npm 官方发行包逐字节比对 PDF.js 主库、worker、全部 CMaps 和 JSZip 主库，全部一致。
+- 将根文档 MIT 正文移到 docs/LICENSE，降低 GitHub 将全仓识别为 MIT 的歧义。
+- Windows exe 仍未构建或发布；该项不阻塞当前源码公开。

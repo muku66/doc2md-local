@@ -8,11 +8,13 @@ const BUILTIN_DATE = new Set([14, 15, 16, 17, 18, 19, 20, 21, 22, 45, 46, 47]);
 const isDateCode = (code) => /[dmyhs]/i.test(code.replace(/"[^"]*"|\[[^\]]*\]|\\./g, '').replace(/[eE][+-]/g, ''));
 const pad = (n) => String(n).padStart(2, '0');
 
-function serialToText(v, time) {
-  const ms = Math.round((v - 25569) * 86400 * 1000), d = new Date(ms);
-  const date = `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())}`;
+function serialToText(v, time, date1904 = false, timeOnly = false) {
+  // Excel's 1904 epoch is 1462 days later; the 1900 system includes a fictional leap day.
+  const serial = date1904 ? v + 1462 : (v > 0 && v < 60 ? v + 1 : v);
+  const ms = Math.round((serial - 25569) * 86400 * 1000), d = new Date(ms);
+  const date = !date1904 && Math.floor(v) === 60 ? '1900-02-29' : `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())}`;
   const clock = `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`;
-  if (v < 1) return clock;
+  if (v >= 0 && v < 1 && timeOnly) return clock;
   return Math.abs(v - Math.floor(v)) < 1e-9 || !time ? date : `${date} ${clock}`;
 }
 function formatNumber(raw, code) {
@@ -46,7 +48,7 @@ export async function xlsxToMd(buf, opts = {}, notes = []) {
     const xfs = first(st.documentElement, 'cellXfs');
     for (const xf of kids(xfs, 'xf')) xfFmt.push(+(attrOf(xf, 'numFmtId') || 0));
   }
-  const date1904 = attrOf(first(first(wb.documentElement, 'workbookPr'), 'x') || first(wb.documentElement, 'workbookPr'), 'date1904') === '1';
+  const date1904 = ['1', 'true'].includes(attrOf(first(wb.documentElement, 'workbookPr'), 'date1904'));
 
   const sheets = [];
   for (const s of descendants(wb, 'sheet')) {
@@ -70,7 +72,8 @@ export async function xlsxToMd(buf, opts = {}, notes = []) {
         else if (v !== '') {
           const id = xfFmt[style] ?? 0, code = customFmt[id];
           const dateLike = BUILTIN_DATE.has(id) || (code && isDateCode(code));
-          text = dateLike && isFinite(+v) ? serialToText(+v - (date1904 ? 1462 : 0), id !== 14 && id !== 15 && !(code && !/h|s/i.test(code.replace(/"[^"]*"/g, '')))) : formatNumber(v, code || (id === 9 ? '0%' : id === 10 ? '0.00%' : id === 2 ? '0.00' : id === 4 ? '#,##0.00' : id === 3 ? '#,##0' : ''));
+          const timeOnly = [18, 19, 20, 21, 45, 46, 47].includes(id) || (code && /[hs]/i.test(code) && !/[dy]/i.test(code.replace(/"[^"]*"|\[[^\]]*\]/g, '')));
+          text = dateLike && isFinite(+v) ? serialToText(+v, id !== 14 && id !== 15 && !(code && !/h|s/i.test(code.replace(/"[^"]*"/g, ''))), date1904, timeOnly) : formatNumber(v, code || (id === 9 ? '0%' : id === 10 ? '0.00%' : id === 2 ? '0.00' : id === 4 ? '#,##0.00' : id === 3 ? '#,##0' : ''));
         }
         if (text === '') continue;
         (grid[r] ||= [])[col] = text; maxCol = Math.max(maxCol, col);

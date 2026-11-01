@@ -14,6 +14,6 @@
 
 完整本地声明见 [vendor/LICENSES.txt](vendor/LICENSES.txt) 和 [vendor/LICENSE-core-js.txt](vendor/LICENSE-core-js.txt)，还保留了所安装 JSZip 传递依赖的许可文本。压缩文件内原始许可头没有删除。CMaps 目录保留其自带 LICENSE。
 
-资源由现有网站的 node_modules 原样复制，精确文件哈希见 [vendor/SHA256SUMS.txt](vendor/SHA256SUMS.txt)。这不是从官方 release 重新下载后的字节一致性认证。**需要核实**：压缩包中所有传递依赖的精确构建版本与官方构建清单是否完全一致。公开发布前建议依据该版本官方源码构建清单复核；不要声称已完成完整供应链或安全审计。
+资源最初由现有网站的 node_modules 原样复制；2026-11-01 已从 npm 官方 registry 重新下载对应版本发行包，逐字节核对 PDF.js 主库、worker、全部 CMaps 和 JSZip 主库，全部一致。精确文件哈希见 [vendor/SHA256SUMS.txt](vendor/SHA256SUMS.txt)。库内组件声明按发行包和上游许可保留；此核对不等同于对全部传递依赖做独立安全审计。
 
 应用自写 HTML / JS / CSS 使用 web/LICENSE 的 MIT。第三方版权仍属于各上游作者，不使用应用作者署名替换。

@@ -15,7 +15,7 @@ PDF / Word / PowerPoint / Excel 转 Markdown，在本机处理文件。
 
 ## 许可证边界
 
-两个目录是独立实现。MIT 仅适用于 `web/` 的自写代码，不能用于重新许可 `desktop/`。第三方库保留其原许可证，分别见各目录的 THIRD_PARTY_NOTICES.md。根目录说明文档采用 MIT，正文见 [LICENSE-DOCS](LICENSE-DOCS)。仓库没有统一覆盖所有目录的根 LICENSE。
+两个目录是独立实现。MIT 仅适用于 `web/` 的自写代码，不能用于重新许可 `desktop/`。第三方库保留其原许可证，分别见各目录的 THIRD_PARTY_NOTICES.md。根目录说明文档采用 MIT，正文见 [文档 MIT 许可证](docs/LICENSE)。仓库没有统一覆盖所有目录的根 LICENSE。
 
 ## English
 
