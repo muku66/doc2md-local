@@ -25,7 +25,7 @@
 
 ## GitHub 状态
 
-用户随后授权代为上传；已创建 muku66/doc2md-local 私有仓库。本次通过系统已有 Git HTTPS 凭据推送，提交身份使用 GitHub 邮箱设置页确认的 noreply 邮箱。仓库保持 Private；没有改为公开或创建 Release。发布指南仍保留手动流程供后续维护使用。
+用户随后授权代为上传；已创建 muku66/doc2md-local 私有仓库。本次通过系统已有 Git HTTPS 凭据推送，提交身份使用 GitHub 邮箱设置页确认的 noreply 邮箱。首次上传保持 Private；2026-11-01 经独立复查、修复回归与用户再次确认，并由用户完成 GitHub 身份验证后，仓库已改为 Public。没有创建 Release 或发布 exe。发布指南仍保留手动流程供后续维护使用。
 
 ## 公开前独立复查（2026-11-01）
 

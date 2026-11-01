@@ -16,7 +16,7 @@
 - [docs/LICENSE](../docs/LICENSE) — 1063 bytes
 - [docs/publishing.md](../docs/publishing.md) — 4945 bytes
 - [docs/release-v1.0.0.md](../docs/release-v1.0.0.md) — 2204 bytes
-- [docs/verification.md](../docs/verification.md) — 3152 bytes
+- [docs/verification.md](../docs/verification.md) — 3291 bytes
 - [web/LICENSE](../web/LICENSE) — 1063 bytes
 - [web/README.md](../web/README.md) — 2657 bytes
 - [web/THIRD_PARTY_NOTICES.md](../web/THIRD_PARTY_NOTICES.md) — 2049 bytes
